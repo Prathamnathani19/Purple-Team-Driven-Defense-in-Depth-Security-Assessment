@@ -112,24 +112,24 @@ This enabled end-to-end visibility from attack initiation to detection.
   🧠 Framework Mapping
       OWASP Top 10
 
-      A01 – Broken Access Control
+          A01 – Broken Access Control
 
-      A03 – Injection (XSS)
+          A03 – Injection (XSS)
 
-      A05 – Security Misconfiguration
+          A05 – Security Misconfiguration
 
-      A07 – Identification and Authentication Failures
+          A07 – Identification and Authentication Failures
 
-      A02 – Cryptographic Failures
+          A02 – Cryptographic Failures
 
-      MITRE ATT&CK
+        MITRE ATT&CK
 
-      Reconnaissance
+          Reconnaissance
 
-      Initial Access
+          Initial Access
 
-      Privilege Abuse
+          Privilege Abuse
 
-      Impact
+          Impact
 
-  Each attack and mitigation was mapped to relevant techniques for structured analysis.
+      Each attack and mitigation was mapped to relevant techniques for structured analysis.
