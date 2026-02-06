@@ -6,17 +6,17 @@ Architecture Overview
 
 The environment is designed using a segmented multi-VM architecture:
 
-Attacker VM (Kali Linux) – Simulates real-world attacker activity
+    Attacker VM (Kali Linux) – Simulates real-world attacker activity
 
-Firewall VM – Enforces traffic filtering and hosts IDS/IPS
+    Firewall VM – Enforces traffic filtering and hosts IDS/IPS
 
-Web Server VM – Hosts a Django web application and encrypted data
+    Web Server VM – Hosts a Django web application and encrypted data
 
-SIEM VM (Wazuh) – Centralized monitoring and log correlation
+    SIEM VM (Wazuh) – Centralized monitoring and log correlation
 
 Traffic Flow:-
 
-Attacker (Kali) → Firewall (iptables + Suricata) → Web Server (Django)
+    Attacker (Kali) → Firewall (iptables + Suricata) → Web Server (Django)
                                       ↓
                                  Logs forwarded
                                       ↓
@@ -30,27 +30,27 @@ All attacker traffic is forced through the firewall and IDS layer before reachin
 
 The following attacks were manually performed and validated:
 
-Network Reconnaissance
+  Network Reconnaissance
 
-    Port scanning and service discovery
+      Port scanning and service discovery
 
-Stored Cross-Site Scripting (XSS)
+  Stored Cross-Site Scripting (XSS)
 
-    HTML file upload leading to JavaScript execution
+      HTML file upload leading to JavaScript execution
 
-Broken Access Control (IDOR-like testing)
+  Broken Access Control (IDOR-like testing)
 
-    Unauthorized access to protected resources
+      Unauthorized access to protected resources
 
-Authentication Abuse
+  Authentication Abuse
 
-    Multiple login attempts and weak access controls
+      Multiple login attempts and weak access controls
 
-Insecure File Handling
+  Insecure File Handling
 
-    Direct access to uploaded files via media paths
+      Direct access to uploaded files via media paths
 
-All attacks were executed in a controlled environment and documented with evidence.
+  All attacks were executed in a controlled environment and documented with evidence.
 
 
 🔵 Detection & Monitoring (Blue Team)
