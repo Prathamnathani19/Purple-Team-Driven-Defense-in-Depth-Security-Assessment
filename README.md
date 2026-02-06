@@ -110,7 +110,8 @@ This enabled end-to-end visibility from attack initiation to detection.
 
 
   🧠 Framework Mapping
-      OWASP Top 10
+        
+        OWASP Top 10
 
           A01 – Broken Access Control
 
