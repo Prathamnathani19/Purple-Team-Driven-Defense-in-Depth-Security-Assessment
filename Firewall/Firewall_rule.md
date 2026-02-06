@@ -33,29 +33,42 @@ Network Context
  Level 1 – Enable IP Forwarding
 
   The firewall must route traffic between networks.
+  
         sudo sysctl -w net.ipv4.ip_forward=1
   Permanent configuration:
+  
         sudo nano /etc/sysctl.conf
+        
   Add:
+  
         net.ipv4.ip_forward=1
  Level 2 – Flush Existing Rules
+ 
   Ensure no inherited or conflicting rules exist.
+  
         sudo iptables -F
         sudo iptables -t nat -F
         sudo iptables -X
+        
  Level 3 – Default-Deny Policy
+ 
   Block everything by default.
+  
         sudo iptables -P INPUT DROP
         sudo iptables -P FORWARD DROP
         sudo iptables -P OUTPUT ACCEPT
+        
   Rationale:
+  
     Inbound and forwarded traffic must be explicitly allowed
     Outbound traffic allowed for updates and logging
   
   Level 4 – Allow Loopback & Established Connections
+  
         sudo iptables -A INPUT -i lo -j ACCEPT
         sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
         sudo iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+        
     Why:
       Prevents breaking existing connections
       Required for normal system operation
@@ -76,15 +89,19 @@ Network Context
         sudo iptables -A FORWARD -p tcp -s 192.168.10.0/24 -d 192.168.10.100 --dport 22 -j ACCEPT
 
     Security Benefit:
+    
       SSH is inaccessible from attacker network
       Administrative access restricted by network segmentation
+      
   Level 7 – Allow Wazuh Log Communication
+  
     Permit web server and firewall to communicate with SIEM.
     
         sudo iptables -A FORWARD -p tcp -d 192.168.10.150 --dport 1514 -j ACCEPT
         sudo iptables -A FORWARD -p tcp -d 192.168.10.150 --dport 1515 -j ACCEPT
 
   Level 8 – NAT Configuration (Outbound Access)
+  
     Enable internet access for internal machines via firewall.
 
         sudo iptables -t nat -A POSTROUTING -o ens33 -j MASQUERADE
